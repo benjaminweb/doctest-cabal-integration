@@ -1,0 +1,37 @@
+name: dtest
+version: 0.1
+synopsis: trying to integrate doctest with `cabal test`
+category: individual software
+license: AllRightsReserved
+author: Benjamin Weber <one@bwe.im>
+maintainer: Benjamin Weber <one@bwe.im>
+stability: unstable
+
+extra-source-files:
+    - CHANGELOG.md
+    - test/doctests.hs
+
+dependencies:
+    - base
+    - unordered-containers
+
+ghc-options: -Wall
+
+
+library:
+  source-dirs: src
+
+executables:
+  dtest-bin:
+    source-dirs: app
+    main: Main.hs
+
+tests:
+    doctest:
+        source-dirs: test
+        main: doctests.hs
+        other-modules: []
+        dependencies:
+            - dtest
+            - doctest
+            - unordered-containers
